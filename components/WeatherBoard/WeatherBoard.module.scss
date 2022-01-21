@@ -1,16 +1,29 @@
+// responsiveness
+$mobile: 500px;
+
+@mixin mobile {
+    @media (max-width: #{$mobile}) {
+        @content;
+    }
+}
+
 .weather_board_container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    row-gap: 15px;
+    column-gap: 15px;
     justify-content: space-around;
     align-items: center;
     width: 80vw;
     margin: auto;
 
-    @media screen and (max-width: 500px) {
-        flex-direction: column;
+    @include mobile {
+        grid-template-columns: 1fr;
+        row-gap: 10px;
     }
 
     .weather_board {
-        width: 60%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         background-color: rgb(83, 155, 214);
@@ -19,9 +32,9 @@
         border-radius: 2px;
         box-shadow: 5px 5px 10px rgb(0, 28, 153);
 
-        @media screen and (max-width: 500px) {
+        @include mobile {
             width: 100%;
-            margin-bottom: 15px; 
+            margin-bottom: 15px;
         }
 
         .title {
@@ -30,25 +43,31 @@
     }
 
     .weather_form {
-        width: 30%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
 
-        @media screen and (max-width: 500px) {
+        @include mobile {
             width: 100%;
-            margin-bottom: 15px; 
         }
 
         .message {
             width: 100%;
-            margin-bottom: 15px;
             padding: 5px;
             text-align: center;
             border-radius: 2px;
             font-size: 10px;
             height: 0;
             transition: 0.3s;
+            background-color: rgb(65, 65, 65);
+
+            @include mobile {
+                width: 80%;
+            }
 
             &.show {
-                background-color: white;
                 border: 1px solid rgb(0, 0, 0);
                 height: auto;
             }
@@ -85,6 +104,31 @@
             &.isValid {
                 border: 2px solid rgb(39, 233, 0);
             }
+
+            @include mobile {
+                width: 80%;
+            }
+        }
+
+        .submit_button {
+            border: 1px solid #fff;
+            background-color: rgb(92, 115, 124);
+            border-radius: 2px;
+        }
+    }
+
+    .weather_credit {
+        width: 100%;
+        grid-column: 1/3;
+
+        @include mobile {
+            width: 100%;
+            text-align: center;
+            grid-column: 1;
+        }
+
+        .credit_link {
+            color: rgb(218, 255, 247);
         }
     }
 }

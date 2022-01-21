@@ -1,6 +1,9 @@
 import React, { Component, createRef } from 'react';
 import styles from "./WeatherBoard.module.scss";
 
+export const credit_org = "Open Weather";
+export const credit_link = "https://openweathermap.org/";
+
 export default class WeatherBoard extends Component {
   constructor(props) {
     super(props)
@@ -120,16 +123,28 @@ export default class WeatherBoard extends Component {
     <form className={styles.weather_form} onSubmit={(e) => this.handleSubmit(e)}>
       <div className={`
       ${styles.message} 
-      ${(successMessage || errorMessage) && styles.show} 
+      ${styles.show} 
       ${isCityValid && styles.isSuccess}
       ${isCityInvalid && styles.isError}`}>
-        {successMessage || errorMessage}
+        {successMessage || errorMessage || "Please input the city below."}
       </div>
       <input className={
         `${styles.weather_input} ${isCityInvalid && styles.isInvalid}`
       } type="text" placeholder="City" ref={this.cityRef} />
+      <button className={styles.submit_button} type="submit">Submit</button>
     </form>
     );
+  }
+
+  renderCredit() {
+    return (
+      <div className={styles.weather_credit}>
+        Data is provided by&nbsp;
+        <a className={styles.credit_link} href={credit_link}>
+          {credit_org}
+        </a>
+      </div>
+    )
   }
 
   render() {
@@ -142,6 +157,7 @@ export default class WeatherBoard extends Component {
             {this.renderLocation()}
           </div>
           {this.renderWeatherForm()}
+          {this.renderCredit()}
         </div>
       </>
     );
