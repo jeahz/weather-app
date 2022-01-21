@@ -1,3 +1,7 @@
+# weather-app
+
+Get your API key on [Open Weather](https://home.openweathermap.org/api_keys) website. Put the API key on next.config.js on env property inside the object that is going to be exported. Then type `npm run dev` on terminal and enter.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
